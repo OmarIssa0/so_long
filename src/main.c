@@ -86,10 +86,38 @@ int close_window(void *param)
     (void)param;
     exit(0);
 }
-int main(void)
+int main(int ac, char **av)
 {
     t_game game;
+    if (ac != 2)
+    {
+        ft_dprintf(2, "Error: invalid number of arguments\n");
+        return (1);
+    }
+    char *map_file = av[1];
 
+    int fd = open(map_file, O_RDONLY);
+    if (fd == -1)
+    {
+        ft_dprintf(2, "Error: open() failed\n");
+        return (1);
+    }
+    char *line = NULL;
+    line = malloc(100);
+    if (!line)
+    {
+        ft_dprintf(2, "Error: malloc() failed\n");
+        return (1);
+    }
+    game.map = malloc(100 * sizeof(char *));
+    int i = 0;
+    while ((line = get_next_line(fd)))
+    {
+        game.map[i] = ft_strdup(line);
+        printf("%s", game.map[i++]);
+        free(line);
+    }
+    close(fd);
     game.mlx = mlx_init();
     if (!game.mlx)
     {
