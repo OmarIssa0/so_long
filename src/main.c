@@ -12,29 +12,185 @@
 
 #include "../include/so_long.h"
 
-
-int main()
+void load_images(t_game *game)
 {
-    void *mlx;
-    void *mlx_win;
+    game->player_img = mlx_xpm_file_to_image(game->mlx, "../5.xpm", &game->img_width, &game->img_height);
+    // game->wall_img = mlx_xpm_file_to_image(game->mlx, "../5.xpm", &game->img_width, &game->img_height);
+    // game->exit_img = mlx_xpm_file_to_image(game->mlx, "../5.xpm", &game->img_width, &game->img_height);
+    // game->floor_img = mlx_xpm_file_to_image(game->mlx, "../5.xpm", &game->img_width, &game->img_height);
+    // game->collectible_img = mlx_xpm_file_to_image(game->mlx, "../5.xpm", &game->img_width, &game->img_height);
 
-    mlx = mlx_init();
-    if (!mlx)
+    if (!game->player_img)
     {
-        fprintf(stderr, "Error: mlx_init() failed.\n");
-        return 1;
+        ft_dprintf(2, "Error: mlx_xpm_file_to_image() failed\n");
+        exit(1);
+    }
+    // if (!game->player_img || !game->wall_img || !game->exit_img || !game->floor_img || !game->collectible_img)
+    // {
+    //     ft_dprintf(2, "Error: mlx_xpm_file_to_image() failed\n");
+    //     exit(1);
+    // }
+}
+
+void render_map(t_game *game)
+{
+    int x;
+    int y;
+
+    y = 0;
+    while (y < game->map_height)
+    {
+        x = 0;
+        while (x < game->map_width)
+        {
+            if (game->map[y][x] == '1')
+                mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall_img, x * 64, y * 64);
+            // else if (game->map[y][x] == 'E')
+            //     mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit_img, x * 64, y * 64);
+            // else if (game->map[y][x] == 'C')
+            //     mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectible_img, x * 64, y * 64);
+            // else if (game->map[y][x] == 'P')
+                // mlx_put_image_to_window(game->mlx, game->mlx_win, game->player_img, x * 64, y * 64);
+            else
+                mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor_img, x * 64, y * 64);
+            x++;
+        }
+        y++;
+    }
+}
+
+int handle_keypress(int keycode, t_game *game)
+{
+    if (keycode == 53)
+    {
+        mlx_destroy_window(game->mlx, game->mlx_win);
+        exit(0);
+    }
+    if (keycode == 13)
+    {
+        game->player_y--;
+    }
+    if (keycode == 1)
+    {
+        game->player_y++;
+    }
+    if (keycode == 0)
+    {
+        game->player_x--;
+    }
+    if (keycode == 2)
+    {
+        game->player_x++;
     }
 
-    mlx_win = mlx_new_window(mlx, 500, 500, "Test Window");
-    if (!mlx_win)
+    render_map(game);
+
+    return (0);
+}
+
+int close_window(void *param)
+{
+    (void)param;
+    exit(0);
+}
+void load_map(t_game *game, char *filename)
+{
+    int fd;
+    char *line;
+    int row = 0;
+
+    fd = open(filename, O_RDONLY);
+    if (fd < 0)
     {
-        fprintf(stderr, "Error: mlx_new_window() failed.\n");
-        return 1;
+        printf("Error: Failed to open map file\n");
+        exit(1);
     }
 
-    // for (int i = 0; i < 100; i++)
-    //     mlx_pixel_put(mlx, mlx_win, 250 + i,250 + i, 0x00FF0000);
-    mlx_pixel_put(mlx, mlx_win, 250, 250, 0x00FF0000);
-    mlx_loop(mlx);
-    return 0;
+    game->map = malloc(sizeof(char *) * 100);
+    if (!game->map)
+    {
+        printf("Error: Memory allocation failed\n");
+        exit(1);
+    }
+
+    while ((line = get_next_line(fd)))
+    {
+        game->map[row++] = line; 
+        // ft_printf("%s\n", game->map[row - 1]);
+    }
+    game->map[row] = NULL;
+    close(fd);
+    game->map_width = ft_strlen(game->map[0] - 1);
+    game->map_height = row;
+    // printf("Loaded map:\n");
+    // for (int i = 0; i < game->map_height; i++)
+    // {
+    //     printf("%s", game->map[i]);
+    // }
+}
+
+void validate_map(t_game *game)
+{
+    int i;
+
+    for (i = 0; i < game->map_width; i++)
+    {
+        if (game->map[0][i] != '1' || game->map[game->map_height - 1][i] != '1')
+        {
+            printf("Error: Map is not surrounded by walls   test\n");
+            exit(1);
+        }
+    }
+
+    // for (i = 0; i < game->map_height; i++)
+    // {
+    //     if (game->map[i][0] != '1' || game->map[i][game->map_width - 1] != '1')
+    //     {
+    //         printf("Error: Map is not surrounded by walls \n");
+    //         exit(1);
+    //     }
+    // }
+}
+int main(int ac, char **av)
+{
+    if (ac != 2)
+    {
+        ft_dprintf(2, "Error: invalid number of arguments\n");
+        return (1);
+    }
+    t_game game;
+    // int fd = open(av[1], O_RDONLY);
+   
+    // close(fd);
+    game.mlx = mlx_init();
+    if (!game.mlx)
+    {
+        ft_dprintf(2, "Error: mlx_init() failed\n");
+        return (1);
+    }
+
+    game.mlx_win = mlx_new_window(game.mlx, 800, 600, "so_long");
+    if (!game.mlx_win)
+    {
+        ft_dprintf(2, "Error: mlx_new_window() failed\n");
+        return (1);
+    }
+
+    load_map(&game, av[1]);
+    validate_map(&game);
+
+    render_map(&game);
+    game.player_img = mlx_xpm_file_to_image(game.mlx, "./5.xpm", &game.img_width, &game.img_height);
+    if (!game.player_img)
+    {
+        ft_dprintf(2, "Error: mlx_xpm_file_to_image() failed\n");
+        return (1);
+    }
+    mlx_key_hook(game.mlx_win, handle_keypress, &game);
+    mlx_hook(game.mlx_win, 17, 0, close_window, NULL);
+
+    // mlx_put_image_to_window(game.mlx, game.mlx_win, game.player_img, 0, 0);
+    mlx_loop(game.mlx);
+
+    return (0);
 }
