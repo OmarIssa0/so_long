@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 23:24:07 by oissa             #+#    #+#             */
-/*   Updated: 2024/11/25 13:27:53 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/09 17:36:45 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	ft_dprintf(int fd, const char *format, ...)
 	va_end(args);
 	return (length);
 }
+
 // int main()
 // {
 // 	char *str = "Hello, World!";
