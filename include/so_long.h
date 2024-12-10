@@ -20,6 +20,8 @@
 # include "../Libft/libft.h"
 # include "mlx.h"
 
+# define IMAGE_PLAYER_PATH "assets/image/player_image.xpm"
+
 typedef struct s_game
 {
     void *mlx;
@@ -39,10 +41,16 @@ typedef struct s_game
     void *collectible_img;
 }               t_game;
 
-// void    init_game(t_game *game, char *map_file);
-// void    load_map(t_game *game, char *map_file);
-// void    render_game(t_game *game);
-// void    handle_events(t_game *game);
-// void    cleanup(t_game *game);
+
+
+/*
+    utils functions:
+*/
+void    free_map(t_game *game);
+void    check_file_name(char *map_file);
+void    read_for_fd(char *map_file, int *fd, char **tmp);
+void    save_for_map(char *map_file, t_game *game);
+void    check_map(t_game *game);
+void    check_file_name(char *map_file);
 
 #endif

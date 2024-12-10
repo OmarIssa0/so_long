@@ -5,12 +5,14 @@ RM = rm -f
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRC = src/main.c
+SRC = 	src/main.c 					\
+		src/utils/free.c 			\
+		src/utils/error_handler.c 	\
+		src/utils/read_map.c 		\
 
 OBJ = $(SRC:.c=.o)
 
 LIBX = -lmlx -lXext -lX11 -lm
-# LIBX =  -I./minilibx-linux -L./minilibx-linux -lmlx -lXext -lX11
 
 all: libft $(NAME)
 
