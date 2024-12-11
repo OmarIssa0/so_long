@@ -111,12 +111,12 @@ int main(int ac, char *av[])
     // game.img_height = STANDARD_SIZE;
    
     // Ensure all images are loaded before using them
-    game.wall_img = mlx_xpm_file_to_image(game.mlx, IMAGE_WALL_PATH, &game.img_width, &game.img_height);
+    game.floor_img = mlx_xpm_file_to_image(game.mlx, IMAGE_WALL_PATH, &game.img_width, &game.img_height);
     game.player_img = mlx_xpm_file_to_image(game.mlx, IMAGE_PLAYER_PATH, &game.img_width, &game.img_height);
     
     // game.exit_img = mlx_xpm_file_to_image(game.mlx, IMAGE_EXIT_PATH, &width, &height);
     // game.collectible_img = mlx_xpm_file_to_image(game.mlx, IMAGE_COLLECTIBLE_PATH, &width, &height);
-    game.floor_img = mlx_xpm_file_to_image(game.mlx, IMAGE_FLOOR_PATH, &game.img_width, &game.img_height);
+    game.wall_img = mlx_xpm_file_to_image(game.mlx, IMAGE_FLOOR_PATH, &game.img_width, &game.img_height);
 
     if (!game.wall_img || !game.player_img)
     {

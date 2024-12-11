@@ -21,8 +21,8 @@
 # include <mlx.h>
 
 # define IMAGE_PLAYER_PATH "assets/image/player_image.xpm"
-# define IMAGE_FLOOR_PATH "assets/image/tile177.xpm"
-# define IMAGE_WALL_PATH "assets/image/tile1510.xpm"
+# define IMAGE_FLOOR_PATH "assets/image/isometric_pixel_flat_0014.xpm"
+# define IMAGE_WALL_PATH "assets/image/isometric_pixel_flat_0000.xpm"
 # define STANDARD_SIZE 50
 # define WIDTH_SIZE STANDARD_SIZE
 # define HEIGHT_SIZE STANDARD_SIZE
