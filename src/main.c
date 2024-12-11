@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -14,8 +15,19 @@
 
 void free_resources(t_game *game)
 {
+    if (game->player_img)
+        mlx_destroy_image(game->mlx, game->player_img);
+    if (game->wall_img)
+        mlx_destroy_image(game->mlx, game->wall_img);
+    // if (game->exit_img)
+    //     mlx_destroy_image(game->mlx, game->exit_img);
+    // if (game->collectible_img)
+    //     mlx_destroy_image(game->mlx, game->collectible_img);
+    if (game->floor_img)
+        mlx_destroy_image(game->mlx, game->floor_img);
     if (game->mlx_win)
         mlx_destroy_window(game->mlx, game->mlx_win);
+    mlx_destroy_display(game->mlx);
     if (game->mlx)
         free(game->mlx);
     free_map(game);
@@ -48,8 +60,8 @@ void display_map(t_game *game)
             //     display_image_in_window(game, j, i, game->exit_img);
             // else if (game->map[i][j] == 'C')
             //     display_image_in_window(game, j, i, game->collectible_img);
-            // else
-            //     display_image_in_window(game, j, i, game->floor_img);
+            else
+                display_image_in_window(game, j, i, game->floor_img);
             j++;
         }
         i++;
@@ -99,11 +111,12 @@ int main(int ac, char *av[])
     // game.img_height = STANDARD_SIZE;
    
     // Ensure all images are loaded before using them
-    game.wall_img = mlx_xpm_file_to_image(game.mlx, IMAGE_PLAYER_PATH, &game.img_width, &game.img_height);
+    game.wall_img = mlx_xpm_file_to_image(game.mlx, IMAGE_WALL_PATH, &game.img_width, &game.img_height);
     game.player_img = mlx_xpm_file_to_image(game.mlx, IMAGE_PLAYER_PATH, &game.img_width, &game.img_height);
+    
     // game.exit_img = mlx_xpm_file_to_image(game.mlx, IMAGE_EXIT_PATH, &width, &height);
     // game.collectible_img = mlx_xpm_file_to_image(game.mlx, IMAGE_COLLECTIBLE_PATH, &width, &height);
-    // game.floor_img = mlx_xpm_file_to_image(game.mlx, IMAGE_FLOOR_PATH, &width, &height);
+    game.floor_img = mlx_xpm_file_to_image(game.mlx, IMAGE_FLOOR_PATH, &game.img_width, &game.img_height);
 
     if (!game.wall_img || !game.player_img)
     {
