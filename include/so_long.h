@@ -18,9 +18,13 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "../Libft/libft.h"
-# include "mlx.h"
+# include <mlx.h>
 
 # define IMAGE_PLAYER_PATH "assets/image/player_image.xpm"
+# define IMAGE_WALL_PATH "assets/image/wall_image.xpm"
+# define STANDARD_SIZE 100
+# define WIDTH_SIZE STANDARD_SIZE
+# define HEIGHT_SIZE STANDARD_SIZE
 
 typedef struct s_game
 {
