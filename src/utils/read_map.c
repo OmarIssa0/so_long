@@ -51,7 +51,30 @@ void    save_for_map(char *map_file, t_game *game)
             exit(EXIT_FAILURE);
         }
     }
+    check_map_empty(game, tmp, fd);
+    // game->map = ft_split(tmp, '\n');
+    // free(tmp);
+    // close(fd);
+}
+
+void    check_map_empty(t_game *game, char *tmp, int fd)
+{
+    if (tmp[0] == '\0' || !tmp)
+    {
+        ft_dprintf(2, "Error: empty map\n");
+        free(tmp);
+        close(fd);
+        free_resources(game);
+        exit(EXIT_FAILURE);
+    }
+
     game->map = ft_split(tmp, '\n');
     free(tmp);
     close(fd);
+    if (!game->map)
+    {
+        ft_dprintf(2, "Error: memory allocation failed\n");
+        free_resources(game);
+        exit(EXIT_FAILURE);
+    }
 }

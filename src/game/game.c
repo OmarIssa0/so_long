@@ -126,7 +126,7 @@ void player_control(t_game *game, int x, int y)
     if (game->map[new_y][new_x] == '1')
         return;
 
-     if (game->map[new_y][new_x] == 'E')
+    if (game->map[new_y][new_x] == 'E')
     {
         if (game->remaining_collectibles == 0)
         {

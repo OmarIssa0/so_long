@@ -71,6 +71,7 @@ void    save_for_map(char *map_file, t_game *game);
 void    check_map(t_game *game);
 void    check_file_name(char *map_file);
 void    free_resources(t_game *game);
+void    check_map_empty(t_game *game, char *tmp, int fd);
 
 /*
     game functions:
@@ -86,6 +87,6 @@ void    player_hook(t_game *game, int x, int y);
 void    check_width_and_height(t_game *game);
 void    check_map_content(t_game *game);
 void    check_map_too(t_game *game);
-void     count_collectibles(t_game *game);
+void    count_collectibles(t_game *game);
 
 #endif

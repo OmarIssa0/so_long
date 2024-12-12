@@ -39,8 +39,10 @@ void free_resources(t_game *game)
         mlx_destroy_image(game->mlx, game->floor_img);
     if (game->mlx_win)
         mlx_destroy_window(game->mlx, game->mlx_win);
-    mlx_destroy_display(game->mlx);
+    if (game->mlx)
+        mlx_destroy_display(game->mlx);
     if (game->mlx)
         free(game->mlx);
-    free_map(game);
+    if (game->map)
+        free_map(game);
 }
