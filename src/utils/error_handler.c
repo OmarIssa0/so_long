@@ -40,3 +40,102 @@ void    check_map(t_game *game)
         j++;
     game->map_width = j;
 }
+void    check_width_and_height(t_game *game)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (game->map[i])
+    {
+        j = 0;
+        while (game->map[i][j])
+            j++;
+        if (j != game->map_width)
+        {
+            ft_dprintf(2, "Error: invalid map width\n");
+            free_resources(game);
+            exit(EXIT_FAILURE);
+        }
+        i++;
+    }
+    if (i != game->map_height)
+    {
+        ft_dprintf(2, "Error: invalid map height\n");
+        free_resources(game);
+        exit(EXIT_FAILURE);
+    }
+}
+void    check_map_content(t_game *game)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (game->map[i])
+    {
+        j = 0;
+        while (game->map[i][j])
+        {
+            if (game->map[i][j] != '0' && game->map[i][j] != '1' && game->map[i][j] != 'C' && game->map[i][j] != 'E' && game->map[i][j] != 'P')
+            {
+                ft_dprintf(2, "Error: invalid map content\n");
+                free_resources(game);
+                exit(EXIT_FAILURE);
+            }
+            j++;
+        }
+        i++;
+    }
+}
+void check_map_walls(t_game *game)
+{
+    int i;
+
+    for (i = 0; i < game->map_width; i++)
+    {
+        if (game->map[0][i] != '1' || game->map[game->map_height - 1][i] != '1')
+        {
+            ft_dprintf(2, "Error: map is not surrounded by walls\n");
+            free_resources(game);
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    for (i = 0; i < game->map_height; i++)
+    {
+        if (game->map[i][0] != '1' || game->map[i][game->map_width - 1] != '1')
+        {
+            ft_dprintf(2, "Error: map is not surrounded by walls\n");
+            free_resources(game);
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+void    check_map_shape(t_game *game)
+{
+    int i;
+    int row_len;
+
+    i = 0;
+    row_len = ft_strlen(game->map[0]);
+    while (game->map[i])
+    {
+        if ((int)ft_strlen(game->map[i]) != row_len)
+        {
+            ft_dprintf(2, "Error: map is not rectangular\n");
+            free_resources(game);
+            exit(EXIT_FAILURE);
+        }
+        i++;
+    }
+}
+
+void    check_map_too(t_game *game)
+{
+    check_width_and_height(game);
+    check_map_content(game);
+    check_map_walls(game);
+    check_map_shape(game);
+}

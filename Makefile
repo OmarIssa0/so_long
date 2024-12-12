@@ -9,6 +9,8 @@ SRC = 	src/main.c 					\
 		src/utils/free.c 			\
 		src/utils/error_handler.c 	\
 		src/utils/read_map.c 		\
+		src/game/init_game.c 		\
+		src/game/game.c 			
 
 OBJ = $(SRC:.c=.o)
 
