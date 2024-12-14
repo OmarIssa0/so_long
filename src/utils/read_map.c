@@ -39,7 +39,7 @@ void    save_for_map(char *map_file, t_game *game)
 
     check_file_name(map_file);
     read_for_fd(map_file, &fd, &tmp);
-    while ((line = get_next_line(fd)))
+    while ((line = get_next_line_bonus(fd)))
     {
         char *new_tmp = ft_strjoin(tmp, line);
         free(tmp); 
@@ -53,9 +53,6 @@ void    save_for_map(char *map_file, t_game *game)
         }
     }
     check_map_empty(game, tmp, fd);
-    // game->map = ft_split(tmp, '\n');
-    // free(tmp);
-    // close(fd);
 }
 
 void    check_map_empty(t_game *game, char *tmp, int fd)

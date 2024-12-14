@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include "../Libft/libft.h"
 # include <mlx.h>
 
@@ -24,10 +25,12 @@
 /*
     define paths:
 */
-# define IMAGE_PLAYER_PATH "assets/image/player.xpm"
+# define IMAGE_PLAYER_PATH "assets/image/new_player.xpm"
+// # define IMAGE_PLAYER_PATH "assets/image/player.xpm"
 # define IMAGE_FLOOR_PATH "assets/image/ice.xpm"
 # define IMAGE_WALL_PATH "assets/image/ice2.xpm"
-# define IMAGE_COLLECTIBLE_PATH "assets/image/collectible.xpm"
+# define IMAGE_COLLECTIBLE_PATH "assets/image/new_collectible.xpm"
+// # define IMAGE_COLLECTIBLE_PATH "assets/image/collectible.xpm"
 # define IMAGE_EXIT_PATH "assets/image/exit_ice.xpm"
 /*
     define sizes:
@@ -60,6 +63,13 @@ typedef struct s_game
     int     remaining_collectibles;
 }               t_game;
 
+enum e_game
+{
+    UP = 'w',
+    DOWN = 's',
+    LEFT = 'a',
+    RIGHT = 'd'
+};
 
 /*
     utils functions:
@@ -74,6 +84,18 @@ void    free_resources(t_game *game);
 void    check_map_empty(t_game *game, char *tmp, int fd);
 
 /*
+    error handler functions for map:
+*/
+void    check_width_and_height(t_game *game);
+void    check_map_walls(t_game *game);
+void    check_exit(t_game *game);
+void    check_collectibles(t_game *game);
+void    check_player(t_game *game);
+void    check_map_shape(t_game *game);
+void    check_map_content(t_game *game);
+void    check_map_too(t_game *game);
+
+/*
     game functions:
 */
 void    init_game(t_game *game);
@@ -84,9 +106,13 @@ int     handle_keypress(int keycode, t_game *game);
 void    find_player_position(t_game *game);
 void    player_control(t_game *game, int x, int y);
 void    player_hook(t_game *game, int x, int y);
-void    check_width_and_height(t_game *game);
-void    check_map_content(t_game *game);
-void    check_map_too(t_game *game);
 void    count_collectibles(t_game *game);
+
+/*
+    algorithm functions:
+*/
+// bool can_win(t_game *game);
+bool    can_player_finish_game(t_game *game);
+
 
 #endif
