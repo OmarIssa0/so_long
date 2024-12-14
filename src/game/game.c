@@ -137,7 +137,11 @@ void player_control(t_game *game, int x, int y)
         else
         {
             game->player_moves++;
-            game->map[game->player_y][game->player_x] = '0';
+            // game->map[game->player_y][game->player_x] = (game->map[game->player_y][game->player_x] == 'E') ? 'E' : '0';
+            if (game->map[game->player_y][game->player_x] == 'E')
+                game->map[game->player_y][game->player_x] = 'E';
+            else
+                game->map[game->player_y][game->player_x] = '0';
             game->player_x = new_x;
             game->player_y = new_y;
             display_map(game);
@@ -155,7 +159,11 @@ void player_control(t_game *game, int x, int y)
     if (game->map[new_y][new_x] == '0' || (game->map[new_y][new_x] == 'E' && game->remaining_collectibles == 0))
     {
         game->player_moves++;
-        game->map[game->player_y][game->player_x] = '0';
+        // game->map[game->player_y][game->player_x] = (game->map[game->player_y][game->player_x] == 'E') ? 'E' : '0';
+        if (game->map[game->player_y][game->player_x] == 'E')
+            game->map[game->player_y][game->player_x] = 'E';
+        else
+            game->map[game->player_y][game->player_x] = '0';
         game->map[new_y][new_x] = 'P';
         game->player_x = new_x;
         game->player_y = new_y;
@@ -163,3 +171,48 @@ void player_control(t_game *game, int x, int y)
 
     display_map(game);
 }
+// void player_control(t_game *game, int x, int y)
+// {
+//     int new_x = game->player_x + x;
+//     int new_y = game->player_y + y;
+
+//     if (game->map[new_y][new_x] == '1')
+//         return;
+
+//     if (game->map[new_y][new_x] == 'E')
+//     {
+//         if (game->remaining_collectibles == 0)
+//         {
+//             ft_dprintf(2, "You won the game!\n");
+//             free_resources(game);
+//             exit(EXIT_SUCCESS);
+//         }
+//         else
+//         {
+//             game->player_moves++;
+//             game->map[game->player_y][game->player_x] = '0';
+//             game->player_x = new_x;
+//             game->player_y = new_y;
+//             display_map(game);
+//             return;
+//         }
+//     }
+
+//     if (game->map[new_y][new_x] == 'C')
+//     {
+//         game->player_moves++;
+//         game->map[new_y][new_x] = '0';
+//         game->remaining_collectibles--;
+//     }
+
+//     if (game->map[new_y][new_x] == '0' || (game->map[new_y][new_x] == 'E' && game->remaining_collectibles == 0))
+//     {
+//         game->player_moves++;
+//         game->map[game->player_y][game->player_x] = '0';
+//         game->map[new_y][new_x] = 'P';
+//         game->player_x = new_x;
+//         game->player_y = new_y;
+//     }
+
+//     display_map(game);
+// }

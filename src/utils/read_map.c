@@ -30,6 +30,7 @@ void    read_for_fd(char *map_file, int *fd, char **tmp)
     }
 }
 
+
 void    save_for_map(char *map_file, t_game *game)
 {
     int     fd;

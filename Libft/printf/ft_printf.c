@@ -62,6 +62,8 @@ int	ft_printf(const char *format, ...)
 	return (length);
 }
 
+//"   %s\n", "test ft_printf and orginal printf\n"
+
 // #include <stdio.h>
 // int	main ()
 // {

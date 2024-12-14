@@ -1,6 +1,6 @@
 CC = cc
 NAME = so_long
-CFLAGS = -Wall -Wextra -Werror -I. 
+CFLAGS = -Wall -Wextra -Werror -I. -g 
 RM = rm -f
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a

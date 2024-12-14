@@ -25,10 +25,10 @@
     define paths:
 */
 # define IMAGE_PLAYER_PATH "assets/image/player.xpm"
-# define IMAGE_FLOOR_PATH "assets/image/floor.xpm"
-# define IMAGE_WALL_PATH "assets/image/wall.xpm"
+# define IMAGE_FLOOR_PATH "assets/image/ice.xpm"
+# define IMAGE_WALL_PATH "assets/image/ice2.xpm"
 # define IMAGE_COLLECTIBLE_PATH "assets/image/collectible.xpm"
-# define IMAGE_EXIT_PATH "assets/image/exit.xpm"
+# define IMAGE_EXIT_PATH "assets/image/exit_ice.xpm"
 /*
     define sizes:
 */

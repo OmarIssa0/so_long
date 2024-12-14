@@ -92,7 +92,8 @@ void check_map_walls(t_game *game)
 {
     int i;
 
-    for (i = 0; i < game->map_width; i++)
+    i = 0;
+    while (i < game->map_width)
     {
         if (game->map[0][i] != '1' || game->map[game->map_height - 1][i] != '1')
         {
@@ -100,9 +101,11 @@ void check_map_walls(t_game *game)
             free_resources(game);
             exit(EXIT_FAILURE);
         }
+        i++;
     }
 
-    for (i = 0; i < game->map_height; i++)
+    i = 0;
+    while (i < game->map_height)
     {
         if (game->map[i][0] != '1' || game->map[i][game->map_width - 1] != '1')
         {
@@ -110,6 +113,7 @@ void check_map_walls(t_game *game)
             free_resources(game);
             exit(EXIT_FAILURE);
         }
+        i++;
     }
 }
 
@@ -131,11 +135,95 @@ void    check_map_shape(t_game *game)
         i++;
     }
 }
+void    check_exit(t_game *game)
+{
+    int i;
+    int j;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (i < game->map_height)
+    {
+        j = 0;
+        while (j < game->map_width)
+        {
+            if (game->map[i][j] == 'E')
+                count++;
+            j++;
+        }
+        i++;
+    }
+    if (count != 1)
+    {
+        ft_dprintf(2, "Error: invalid number of exits\n");
+        free_resources(game);
+        exit(EXIT_FAILURE);
+    }
+}
+
+void    check_collectibles(t_game *game)
+{
+    int i;
+    int j;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (i < game->map_height)
+    {
+        j = 0;
+        while (j < game->map_width)
+        {
+            if (game->map[i][j] == 'C')
+                count++;
+            j++;
+        }
+        i++;
+    }
+    if (count == 0)
+    {
+        ft_dprintf(2, "Error: no collectibles found\n");
+        free_resources(game);
+        exit(EXIT_FAILURE);
+    }
+}
+
+void    check_player(t_game *game)
+{
+    int i;
+    int j;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (i < game->map_height)
+    {
+        j = 0;
+        while (j < game->map_width)
+        {
+            if (game->map[i][j] == 'P')
+                count++;
+            j++;
+        }
+        i++;
+    }
+    if (count != 1)
+    {
+        ft_dprintf(2, "Error: invalid number of players\n");
+        free_resources(game);
+        exit(EXIT_FAILURE);
+    }
+}
+
 
 void    check_map_too(t_game *game)
 {
     check_width_and_height(game);
     check_map_content(game);
     check_map_walls(game);
+    check_collectibles(game);
+    check_player(game);
+    check_exit(game);
     check_map_shape(game);
 }

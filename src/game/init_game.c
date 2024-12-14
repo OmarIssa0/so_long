@@ -113,6 +113,7 @@ void display_map(t_game *game)
                     display_image_in_window(game, j, i, game->floor_img);
                 if (game->player_x == j && game->player_y == i)
                     display_image_in_window(game, j, i, game->player_img);
+                // ft_printf("map[%d][%d] = %c\n", i, j, game->map[i][j]);
             }
             else if (game->map[i][j] == 'C')
             {
@@ -146,4 +147,10 @@ void     count_collectibles(t_game *game)
         i++;
     }
     game->remaining_collectibles = count;
+    if (game->remaining_collectibles == 0)
+    {
+        ft_dprintf(2, "Error: no collectibles found\n");
+        free_resources(game);
+        exit(EXIT_FAILURE);
+    }
 }
