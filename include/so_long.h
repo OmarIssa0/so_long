@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdbool.h>
+#include<./X11/X.h>
 # include "../Libft/libft.h"
 # include <mlx.h>
 

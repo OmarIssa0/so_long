@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:47:22 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/14 18:39:18 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/15 13:25:36 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int main(int ac, char *av[])
         exit(EXIT_SUCCESS);
     }
     display_image(&game);
-    mlx_hook(game.mlx_win, 17, 0, close_window, &game);
-    mlx_key_hook(game.mlx_win, handle_keypress, &game);
+    // mlx_hook(game.mlx_win, 17, 0, close_window, &game);
+    mlx_hook(game.mlx_win, KeyPress, KeyRelease, handle_keypress, &game);
     display_map(&game);
     mlx_loop(game.mlx);
     free_resources(&game);
