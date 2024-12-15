@@ -66,10 +66,16 @@ typedef struct s_game
 
 enum e_game
 {
-    UP = 'w',
-    DOWN = 's',
-    LEFT = 'a',
-    RIGHT = 'd'
+    W = 'w',
+    S = 's',
+    A = 'a',
+    D = 'd',
+    LEFT = 65361,
+    RIGHT = 65363,
+    UP = 65362,
+    DOWN = 65364,
+    ESC = 65307,
+    Q = 113
 };
 
 /*

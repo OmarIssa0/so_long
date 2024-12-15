@@ -19,21 +19,25 @@
     S key: 115
     A key: 97
     D key: 100
+    UP key: 65362
+    DOWN key: 65364
+    LEFT key: 65361
+    RIGHT key: 65363
 */
 int handle_keypress(int keycode, t_game *game)
 {
-    if (keycode == 65307 || keycode == 113)
+    if (keycode == ESC || keycode == Q)
     {
         free_resources(game);
         exit(EXIT_SUCCESS);
     }
-    else if (keycode == UP)
+    else if (keycode == UP || keycode == W)
         player_control(game, 0, -1);
-    else if (keycode == DOWN)
+    else if (keycode == DOWN || keycode == S)
         player_control(game, 0, 1);
-    else if (keycode == LEFT)
+    else if (keycode == LEFT || keycode == A)
         player_control(game, -1, 0);
-    else if (keycode == RIGHT)
+    else if (keycode == RIGHT || keycode == D)
         player_control(game, 1, 0);
     display_map(game);
     return (EXIT_SUCCESS);
@@ -90,32 +94,6 @@ void player_hook(t_game *game, int x, int y)
     game->player_x += x;
     game->player_y += y;
 }
-
-// void player_control(t_game *game, int x, int y)
-// {
-//     int new_x = game->player_x + x;
-//     int new_y = game->player_y + y;   
-//     if (game->map[new_y][new_x] == 'E' && game->remaining_collectibles == 0)
-//     {
-//         ft_dprintf(2, "you won the game\n");
-//         free_resources(game);
-//         exit(EXIT_SUCCESS);
-//     }
-//     if (game->map[new_y][new_x] == 'C')
-//     {
-//         game->player_moves++;
-//         game->map[new_y][new_x] = '0';
-//         game->remaining_collectibles--;
-//     }
-//     if (game->map[new_y][new_x] == '0')
-//     {
-//         game->player_moves++;
-//         game->map[game->player_y][game->player_x] = '0';
-//         game->player_x = new_x;
-//         game->player_y = new_y;
-//         game->map[game->player_y][game->player_x] = 'P';
-//     }
-// }
 
 void    player_control_too(t_game *game , int new_x, int new_y)
 {
@@ -176,44 +154,3 @@ void player_control(t_game *game, int x, int y)
     display_map(game);
     ft_printf("Steps: %d\n", game->player_moves);
 }
-
-// void player_control(t_game *game, int x, int y)
-// {
-//     int new_x = game->player_x + x;
-//     int new_y = game->player_y + y;
-//     if (game->map[new_y][new_x] == '1')
-//         return;
-//     if (game->map[new_y][new_x] == 'E')
-//     {
-//         if (game->remaining_collectibles == 0)
-//         {
-//             ft_dprintf(2, "You won the game!\n");
-//             free_resources(game);
-//             exit(EXIT_SUCCESS);
-//         }
-//         else
-//         {
-//             game->player_moves++;
-//             game->map[game->player_y][game->player_x] = '0';
-//             game->player_x = new_x;
-//             game->player_y = new_y;
-//             display_map(game);
-//             return;
-//         }
-//     }
-//     if (game->map[new_y][new_x] == 'C')
-//     {
-//         game->player_moves++;
-//         game->map[new_y][new_x] = '0';
-//         game->remaining_collectibles--;
-//     }
-//     if (game->map[new_y][new_x] == '0' || (game->map[new_y][new_x] == 'E' && game->remaining_collectibles == 0))
-//     {
-//         game->player_moves++;
-//         game->map[game->player_y][game->player_x] = '0';
-//         game->map[new_y][new_x] = 'P';
-//         game->player_x = new_x;
-//         game->player_y = new_y;
-//     }
-//     display_map(game);
-// }

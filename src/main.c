@@ -6,31 +6,12 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:47:22 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/15 13:25:36 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/15 22:29:59 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-/*void    var_init(t_game *game)
-{
-    game->mlx = NULL;
-    game->mlx_win = NULL;
-    game->map_width = 0;
-    game->map_height = 0;
-    game->map = NULL;
-    game->img_width = 0;
-    game->img_height = 0;
-    game->player_x = 0;
-    game->player_y = 0;
-    game->player_moves = 0;
-    game->player_img = NULL;
-    game->wall_img = NULL;
-    game->exit_img = NULL;
-    game->floor_img = NULL;
-    game->collectible_img = NULL;
-    game->remaining_collectibles = 0;
-}*/
 int close_window(t_game *game)
 {
     free_resources(game);
@@ -62,7 +43,7 @@ int main(int ac, char *av[])
         exit(EXIT_SUCCESS);
     }
     display_image(&game);
-    // mlx_hook(game.mlx_win, 17, 0, close_window, &game);
+    mlx_hook(game.mlx_win, 17, 0, close_window, &game);
     mlx_hook(game.mlx_win, KeyPress, KeyRelease, handle_keypress, &game);
     display_map(&game);
     mlx_loop(game.mlx);
