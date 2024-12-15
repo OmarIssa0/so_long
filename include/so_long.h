@@ -27,12 +27,13 @@
     define paths:
 */
 # define IMAGE_PLAYER_PATH "assets/image/new_player.xpm"
-// # define IMAGE_PLAYER_PATH "assets/image/player.xpm"
 # define IMAGE_FLOOR_PATH "assets/image/ice.xpm"
 # define IMAGE_WALL_PATH "assets/image/ice2.xpm"
 # define IMAGE_COLLECTIBLE_PATH "assets/image/new_collectible.xpm"
+# define IMAGE_EXIT_PATH "assets/image/new_exit.xpm"
+// # define IMAGE_EXIT_PATH "assets/image/exit_ice.xpm"
+// # define IMAGE_PLAYER_PATH "assets/image/player.xpm"
 // # define IMAGE_COLLECTIBLE_PATH "assets/image/collectible.xpm"
-# define IMAGE_EXIT_PATH "assets/image/exit_ice.xpm"
 /*
     define sizes:
 */
@@ -64,6 +65,9 @@ typedef struct s_game
     int     remaining_collectibles;
 }               t_game;
 
+/*
+    game keys:
+*/
 enum e_game
 {
     W = 'w',
