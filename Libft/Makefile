@@ -42,15 +42,15 @@ SRC =	ft_atoi.c ft_bzero.c						\
 		printf/ft_printf_char.c						\
 		get_next_line/get_next_line.c				\
 		get_next_line/get_next_line_bonus.c			\
-		dprintf/ft_dprintf.c					\
-		dprintf/ft_dprintf_unsigned.c			\
-		dprintf/ft_dprintf_string.c				\
-		dprintf/ft_dprintf_ptr.c				\
-		dprintf/ft_dprintf_number.c				\
-		dprintf/ft_dprintf_hex.c				\
-		dprintf/ft_dprintf_hex_uppercase.c		\
-		dprintf/ft_dprintf_char.c				\
-		dprintf/ft_utils.c						\
+		dprintf/ft_dprintf.c						\
+		dprintf/ft_dprintf_unsigned.c				\
+		dprintf/ft_dprintf_string.c					\
+		dprintf/ft_dprintf_ptr.c					\
+		dprintf/ft_dprintf_number.c					\
+		dprintf/ft_dprintf_hex.c					\
+		dprintf/ft_dprintf_hex_uppercase.c			\
+		dprintf/ft_dprintf_char.c					\
+		dprintf/ft_utils.c							\
 
 OBJS = $(SRC:%.c=$(OBJDIR)/%.o)
 

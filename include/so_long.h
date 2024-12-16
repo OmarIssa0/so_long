@@ -105,6 +105,7 @@ void    check_player(t_game *game);
 void    check_map_shape(t_game *game);
 void    check_map_content(t_game *game);
 void    check_map_too(t_game *game);
+void	exit_error(char *message, t_game *game, int fd, char *tmp);
 
 /*
     game functions:
