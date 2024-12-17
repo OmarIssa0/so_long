@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:19:44 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 16:23:12 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 17:44:58 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,28 @@ void	player_hook(t_game *game, int x, int y)
 	game->player_y += y;
 }
 
-void	display_image_in_window(t_game *game, int x, int y, void *img)
+void	save_image_mlx(t_game *game, int x, int y, void *img)
 {
 	if (img)
+	{
 		mlx_put_image_to_window(game->mlx, game->mlx_win, img, x * WIDTH_SIZE, y
 			* HEIGHT_SIZE);
+	}
+}
+
+int	close_window(t_game *game)
+{
+	free_resources(game);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
+void	can_play(t_game *game)
+{
+	if (!can_player_finish_game(game))
+	{
+		ft_dprintf(2, "Error: no valid path to win the game\n");
+		free_resources(game);
+		exit(EXIT_SUCCESS);
+	}
 }

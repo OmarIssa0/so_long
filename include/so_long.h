@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:45:15 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 15:54:05 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 16:42:08 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define IMAGE_WALL_PATH "assets/image/ice2.xpm"
 # define IMAGE_COLLECTIBLE_PATH "assets/image/new_collectible.xpm"
 # define IMAGE_EXIT_PATH "assets/image/new_exit.xpm"
-# define STANDARD_SIZE 50 // standard size for images
+# define STANDARD_SIZE 50
 # define WIDTH_SIZE STANDARD_SIZE
 # define HEIGHT_SIZE STANDARD_SIZE
 
@@ -104,7 +104,7 @@ void		exit_error(char *message, t_game *game, int fd, char *tmp);
 */
 void		init_game(t_game *game);
 void		display_image(t_game *game);
-void		display_image_in_window(t_game *game, int x, int y, void *img);
+void		save_image_mlx(t_game *game, int x, int y, void *img);
 void		display_map(t_game *game);
 int			handle_keypress(int keycode, t_game *game);
 void		find_player_position(t_game *game);
@@ -112,6 +112,9 @@ void		player_control(t_game *game, int x, int y);
 void		player_hook(t_game *game, int x, int y);
 void		count_collectibles(t_game *game);
 int			close_window(t_game *game);
+void		display_map_in_window(t_game *game, int i, int j);
+void		player_control_too(t_game *game, int new_x, int new_y);
+void		player_control_three(t_game *game, int new_x, int new_y);
 
 /*
     algorithm functions:

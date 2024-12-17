@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:52:00 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 16:21:52 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 16:41:50 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,22 @@ void	display_image(t_game *game)
 void	display_map_in_window(t_game *game, int i, int j)
 {
 	if (game->map[i][j] == '1')
-		display_image_in_window(game, j, i, game->wall_img);
+		save_image_mlx(game, j, i, game->wall_img);
 	else if (game->map[i][j] == 'P')
-		display_image_in_window(game, j, i, game->player_img);
+		save_image_mlx(game, j, i, game->player_img);
 	else if (game->map[i][j] == 'E')
 	{
 		if (game->remaining_collectibles == 0)
-			display_image_in_window(game, j, i, game->exit_img);
+			save_image_mlx(game, j, i, game->exit_img);
 		else
-			display_image_in_window(game, j, i, game->floor_img);
+			save_image_mlx(game, j, i, game->floor_img);
 		if (game->player_x == j && game->player_y == i)
-			display_image_in_window(game, j, i, game->player_img);
+			save_image_mlx(game, j, i, game->player_img);
 	}
 	else if (game->map[i][j] == 'C')
-		display_image_in_window(game, j, i, game->collectible_img);
+		save_image_mlx(game, j, i, game->collectible_img);
 	else if (game->map[i][j] == '0')
-		display_image_in_window(game, j, i, game->floor_img);
+		save_image_mlx(game, j, i, game->floor_img);
 }
 
 void	display_map(t_game *game)

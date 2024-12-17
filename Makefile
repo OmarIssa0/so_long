@@ -11,6 +11,7 @@ SRC = 	src/main.c 							\
 		src/utils/read_map.c 				\
 		src/game/init_game.c 				\
 		src/game/game.c 					\
+		src/game/utils_game.c 				\
 		src/utils/error_handler_map_too.c 	\
 		src/utils/error_handler_map.c 		\
 		src/algorithm/algorithm.c 			\

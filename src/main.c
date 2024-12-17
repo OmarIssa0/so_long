@@ -6,28 +6,11 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:47:22 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 16:18:51 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 17:43:40 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-int	close_window(t_game *game)
-{
-	free_resources(game);
-	exit(EXIT_SUCCESS);
-	return (0);
-}
-
-void	can_play(t_game *game)
-{
-	if (!can_player_finish_game(game))
-	{
-		ft_dprintf(2, "Error: no valid path to win the game\n");
-		free_resources(game);
-		exit(EXIT_SUCCESS);
-	}
-}
 
 int	main(int ac, char *av[])
 {
