@@ -6,14 +6,14 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:45:15 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 17:52:10 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 22:31:47 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../Libft/libft.h"
+# include "../../Libft/libft.h"
 # include <./X11/X.h>
 # include <fcntl.h>
 # include <mlx.h>

@@ -58,11 +58,6 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "so_long.h": "c",
-    "libft.h": "c",
-    "fcntl.h": "c",
-    "unistd.h": "c",
-    "ft_printf.h": "c",
-    "stdlib.h": "c",
-    "stdio.h": "c"
+    "so_long_bonus.h": "c"
   }
 }
