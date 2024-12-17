@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:42:57 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/16 14:30:40 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 18:05:55 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,25 @@ void	save_for_map(char *map_file, t_game *game)
 	while (line)
 	{
 		new_tmp = ft_strjoin(tmp, line);
+		if (!new_tmp)
+			exit_error_and_close_fd("Error: memory allocation failed", fd);
 		free(tmp);
 		free(line);
 		tmp = new_tmp;
 		if (!tmp)
-		{
-			ft_dprintf(2, "Error: memory allocation failed\n");
-			close(fd);
-			exit(EXIT_FAILURE);
-		}
+			exit_error_and_close_fd("Error: memory allocation failed", fd);
 		line = get_next_line_bonus(fd);
 	}
 	check_map_empty(game, tmp, fd);
 }
 
+/*
+	example:
+	111111
+	\n
+	111111
+	result -> error
+*/
 void	check_map_line(t_game *game, char *tmp, int fd)
 {
 	int	i;
@@ -90,13 +95,7 @@ void	check_map_line(t_game *game, char *tmp, int fd)
 	while (tmp[i] != '\0')
 	{
 		if (tmp[i] == '\n' && (i == 0 || tmp[i - 1] == '\n'))
-		{
-			ft_dprintf(2, "Error: invalid map with empty lines\n");
-			close(fd);
-			free(tmp);
-			free_resources(game);
-			exit(EXIT_FAILURE);
-		}
+			exit_error("Error: invalid map with empty lines", game, fd, tmp);
 		i++;
 	}
 }
@@ -104,13 +103,7 @@ void	check_map_line(t_game *game, char *tmp, int fd)
 void	check_map_empty(t_game *game, char *tmp, int fd)
 {
 	if (tmp[0] == '\0' || !tmp)
-	{
-		ft_dprintf(2, "Error: empty map\n");
-		free(tmp);
-		close(fd);
-		free_resources(game);
-		exit(EXIT_FAILURE);
-	}
+		exit_error("Error: empty map", game, fd, tmp);
 	check_map_line(game, tmp, fd);
 	check_map_width(game, tmp, fd);
 	game->map = ft_split(tmp, '\n');

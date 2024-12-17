@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:45:15 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 16:42:08 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 17:52:10 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void		check_map_shape(t_game *game);
 void		check_map_content(t_game *game);
 void		check_map_too(t_game *game);
 void		exit_error(char *message, t_game *game, int fd, char *tmp);
+void		exit_error_and_close_fd(char *message, int fd);
 
 /*
     game functions:

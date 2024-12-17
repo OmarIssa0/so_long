@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 21:01:58 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 16:21:38 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 20:41:09 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	handle_keypress(int keycode, t_game *game)
 		player_control(game, -1, 0);
 	else if (keycode == RIGHT || keycode == D)
 		player_control(game, 1, 0);
-	display_map(game);
 	return (EXIT_SUCCESS);
 }
 
@@ -75,7 +74,7 @@ void	player_control_too(t_game *game, int new_x, int new_y)
 	{
 		game->player_moves++;
 		ft_printf("Steps: %d\n", game->player_moves);
-		ft_dprintf(2, "You won the game!\n");
+		ft_printf("You won the game!\n");
 		free_resources(game);
 		exit(EXIT_SUCCESS);
 	}

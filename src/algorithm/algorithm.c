@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:58:35 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 16:21:24 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 19:05:09 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
     Algorithm DFS to find the shortest path 
     Depth First Search (DFS) is an algorithm for traversing 
     or searching tree or graph data structures.
+
+
+    dfs(game, x + 1, y, visited) -> right
+    dfs(game, x - 1, y, visited) -> left
+    dfs(game, x, y + 1, visited) -> down
+    dfs(game, x, y - 1, visited) -> up
 */
 void	dfs(t_game *game, int x, int y, bool **visited)
 {

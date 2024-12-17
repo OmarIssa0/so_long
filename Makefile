@@ -18,11 +18,18 @@ SRC = 	src/main.c 							\
 
 OBJ = $(SRC:.c=.o)
 
+# -lmlx -> mlx library
+# -lXext -> X11 extension library
+# -lX11 -> X11 library
+# -lm -> math library
 LIBX = -lmlx -lXext -lX11 -lm
 
 all: libft $(NAME)
 
-$(NAME): $(OBJ)
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(LIBX)
 
 libft:

@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 14:47:35 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/16 14:35:37 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 17:51:55 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ void	check_map_content(t_game *game)
 		}
 		i++;
 	}
+}
+
+void	exit_error_and_close_fd(char *message, int fd)
+{
+	ft_dprintf(2, "%s\n", message);
+	close(fd);
+	exit(EXIT_FAILURE);
 }
 
 void	exit_error(char *message, t_game *game, int fd, char *tmp)
