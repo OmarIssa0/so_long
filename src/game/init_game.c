@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:52:00 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/12 15:52:00 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 16:21:52 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,6 @@ void	display_image(t_game *game)
 		free_resources(game);
 		exit(EXIT_FAILURE);
 	}
-}
-
-void	display_image_in_window(t_game *game, int x, int y, void *img)
-{
-	if (img)
-		mlx_put_image_to_window(game->mlx, game->mlx_win, img, x * WIDTH_SIZE, y
-				* HEIGHT_SIZE);
 }
 
 void	display_map_in_window(t_game *game, int i, int j)

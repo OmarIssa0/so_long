@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:45:15 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/16 20:06:33 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 15:54:05 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,14 @@
 # include <unistd.h>
 
 /*
-    define paths:
+    define paths for images:
 */
 # define IMAGE_PLAYER_PATH "assets/image/new_player.xpm"
 # define IMAGE_FLOOR_PATH "assets/image/ice.xpm"
 # define IMAGE_WALL_PATH "assets/image/ice2.xpm"
 # define IMAGE_COLLECTIBLE_PATH "assets/image/new_collectible.xpm"
 # define IMAGE_EXIT_PATH "assets/image/new_exit.xpm"
-// # define IMAGE_EXIT_PATH "assets/image/exit_ice.xpm"
-// # define IMAGE_PLAYER_PATH "assets/image/player.xpm"
-// # define IMAGE_COLLECTIBLE_PATH "assets/image/collectible.xpm"
-/*
-    define sizes:
-*/
-# define STANDARD_SIZE 50
+# define STANDARD_SIZE 50 // standard size for images
 # define WIDTH_SIZE STANDARD_SIZE
 # define HEIGHT_SIZE STANDARD_SIZE
 
@@ -117,11 +111,16 @@ void		find_player_position(t_game *game);
 void		player_control(t_game *game, int x, int y);
 void		player_hook(t_game *game, int x, int y);
 void		count_collectibles(t_game *game);
+int			close_window(t_game *game);
 
 /*
     algorithm functions:
 */
-// bool can_win(t_game *game);
 bool		can_player_finish_game(t_game *game);
+void		can_play(t_game *game);
+void		dfs(t_game *game, int rows, int cols, bool **visited);
+void		validate_malloc(bool **visited, int rows, int cols, t_game *game);
+void		free_visited(bool **visited, int rows);
+bool		can_finish_game(t_game *game, bool **visited, int rows, int cols);
 
 #endif

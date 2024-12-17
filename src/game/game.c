@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 21:01:58 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/16 14:39:23 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 16:21:38 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,32 +67,6 @@ void	find_player_position(t_game *game)
 		}
 		i++;
 	}
-}
-
-void	player_hook(t_game *game, int x, int y)
-{
-	if (game->map[game->player_y + y][game->player_x + x] == '1')
-		return ;
-	if (game->map[game->player_y + y][game->player_x + x] == 'E')
-	{
-		ft_dprintf(2, "Error: you won the game\n");
-		free_resources(game);
-		exit(EXIT_SUCCESS);
-	}
-	if (game->map[game->player_y + y][game->player_x + x] == 'C')
-	{
-		game->player_moves++;
-		game->map[game->player_y + y][game->player_x + x] = '0';
-		game->remaining_collectibles--;
-	}
-	if (game->map[game->player_y + y][game->player_x + x] == '0')
-	{
-		game->player_moves++;
-	}
-	game->map[game->player_y][game->player_x] = '0';
-	game->map[game->player_y + y][game->player_x + x] = 'P';
-	game->player_x += x;
-	game->player_y += y;
 }
 
 void	player_control_too(t_game *game, int new_x, int new_y)
