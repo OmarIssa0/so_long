@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:45:15 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 22:42:12 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 23:30:36 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@
 /*
     game structure:
 */
+typedef	struct s_enemy
+{
+	int		x;
+	int		y;
+}			t_enemy;
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -55,6 +61,9 @@ typedef struct s_game
 	void	*floor_img;
 	void	*collectible_img;
 	int		remaining_collectibles;
+	void	*enemy_img;
+	t_enemy	*enemies;
+	int num_enemies;
 }			t_game;
 
 /*
@@ -85,7 +94,7 @@ void		check_map(t_game *game);
 void		check_file_name(char *map_file);
 void		free_resources(t_game *game);
 void		check_map_empty(t_game *game, char *tmp, int fd);
-
+void	move_enemies(t_game *game);
 /*
     error handler functions for map:
 */
@@ -116,6 +125,7 @@ int			close_window(t_game *game);
 void		display_map_in_window(t_game *game, int i, int j);
 void		player_control_too(t_game *game, int new_x, int new_y);
 void		player_control_three(t_game *game, int new_x, int new_y);
+void display_steps(t_game *game);
 
 /*
     algorithm functions:

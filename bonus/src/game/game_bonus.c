@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 21:01:58 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 22:50:51 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/18 17:31:43 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,25 +120,32 @@ void	player_control_three(t_game *game, int new_x, int new_y)
 	game->player_moves++;
 }
 
-void	player_control(t_game *game, int x, int y)
-{
-	int	new_x;
-	int	new_y;
 
-	new_x = game->player_x + x;
-	new_y = game->player_y + y;
-	if (game->map[new_y][new_x] == '1')
-		return ;
-	if (game->map[new_y][new_x] == 'E')
-		player_control_too(game, new_x, new_y);
-	if (game->map[new_y][new_x] == 'C')
+void player_control(t_game *game, int x, int y)
+{
+    int new_x;
+    int new_y;
+
+    new_x = game->player_x + x;
+    new_y = game->player_y + y;
+	if (game->map[new_y][new_x] == 'A')
 	{
-		game->map[new_y][new_x] = '0';
-		game->remaining_collectibles--;
+		ft_printf("You lost the game!\n");
+		free_resources(game);
+		exit(EXIT_SUCCESS);
 	}
-	if (game->map[new_y][new_x] == '0' || (game->map[new_y][new_x] == 'E'
+    if (game->map[new_y][new_x] == '1')
+        return;
+    if (game->map[new_y][new_x] == 'E')
+        player_control_too(game, new_x, new_y);
+    if (game->map[new_y][new_x] == 'C')
+    {
+        game->map[new_y][new_x] = '0';
+        game->remaining_collectibles--;
+    }
+    if (game->map[new_y][new_x] == '0' || (game->map[new_y][new_x] == 'E'
 			&& game->remaining_collectibles == 0))
-		player_control_three(game, new_x, new_y);
-	display_map(game);
-	display_steps(game);
+        player_control_three(game, new_x, new_y);
+    display_map(game);
+    display_steps(game);
 }

@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 14:47:35 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 22:42:38 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/17 22:56:18 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	check_map_content(t_game *game)
 		{
 			if (game->map[i][j] != '0' && game->map[i][j] != '1'
 				&& game->map[i][j] != 'C' && game->map[i][j] != 'E'
-				&& game->map[i][j] != 'P')
+				&& game->map[i][j] != 'P' && game->map[i][j] != 'A')
 			{
 				ft_dprintf(2, "Error: invalid map content\n");
 				free_resources(game);
