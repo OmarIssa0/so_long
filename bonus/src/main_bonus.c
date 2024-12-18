@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:47:22 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/18 23:23:48 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/19 00:03:02 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@
 //     int	new_x;
 //     int	new_y;
 
-//     direction = rand() % 4; // فقط 4 اتجاهات
+//     direction = rand() % 4;
 //     new_x = enemy->x;
 //     new_y = enemy->y;
 
@@ -85,10 +85,10 @@
 
 //     if (new_x != enemy->x || new_y != enemy->y)
 //     {
-//         game->map[enemy->y][enemy->x] = '0'; // إفراغ الموقع القديم
+//         game->map[enemy->y][enemy->x] = '0';
 //         enemy->x = new_x;
 //         enemy->y = new_y;
-//         game->map[new_y][new_x] = 'A'; // وضع العدو في الموقع الجديد
+//         game->map[new_y][new_x] = 'A';
 //     }
 // }
 
@@ -198,13 +198,13 @@ void	move_enemy(t_game *game, t_enemy *enemy)
 	new_x = enemy->x;
 	new_y = enemy->y;
 
-	if (direction == 0 && new_y > 0 && (game->map[new_y - 1][new_x] == '0' || game->map[new_y - 1][new_x]  == 'P')) // Up
+	if (direction == 0 && new_y > 0 && (game->map[new_y - 1][new_x] == '0' || game->map[new_y - 1][new_x]  == 'P')) 
 		new_y--;
-	else if (direction == 1 && new_y < game->map_height - 1 &&( game->map[new_y + 1][new_x] == '0' || game->map[new_y + 1][new_x] == 'P')) // Down
+	else if (direction == 1 && new_y < game->map_height - 1 &&( game->map[new_y + 1][new_x] == '0' || game->map[new_y + 1][new_x] == 'P')) 
 		new_y++;
-	else if (direction == 2 && new_x > 0 && (game->map[new_y][new_x - 1] == '0' || game->map[new_y][new_x - 1] == 'P')) // Left
+	else if (direction == 2 && new_x > 0 && (game->map[new_y][new_x - 1] == '0' || game->map[new_y][new_x - 1] == 'P')) 
 		new_x--;
-	else if (direction == 3 && new_x < game->map_width - 1 && (game->map[new_y][new_x + 1] == '0' ||game->map[new_y][new_x + 1] == 'P' )) // Right
+	else if (direction == 3 && new_x < game->map_width - 1 && (game->map[new_y][new_x + 1] == '0' ||game->map[new_y][new_x + 1] == 'P' ))
 		new_x++;
 	if (new_x != enemy->x || new_y != enemy->y)
 	{
