@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:09:12 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/18 18:17:10 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/18 23:33:30 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ void	free_map(t_game *game)
 	}
 	free(game->map);
 }
+void	free_collectibles(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->collectibles_img_count)
+	{
+		if (game->collectible_img[i])
+			mlx_destroy_image(game->mlx, game->collectible_img[i]);
+		i++;
+	}
+	free(game->collectible_img);
+}
 
 void	free_resources(t_game *game)
 {
@@ -34,7 +47,7 @@ void	free_resources(t_game *game)
 	if (game->exit_img)
 		mlx_destroy_image(game->mlx, game->exit_img);
 	if (game->collectible_img)
-		mlx_destroy_image(game->mlx, game->collectible_img);
+		free_collectibles(game);
 	if (game->floor_img)
 		mlx_destroy_image(game->mlx, game->floor_img);
 	if (game->mlx_win)

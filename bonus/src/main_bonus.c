@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:47:22 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/18 21:31:41 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/18 23:23:48 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,17 +198,22 @@ void	move_enemy(t_game *game, t_enemy *enemy)
 	new_x = enemy->x;
 	new_y = enemy->y;
 
-	if (direction == 0 && new_y > 0 && game->map[new_y - 1][new_x] == '0') // Up
+	if (direction == 0 && new_y > 0 && (game->map[new_y - 1][new_x] == '0' || game->map[new_y - 1][new_x]  == 'P')) // Up
 		new_y--;
-	else if (direction == 1 && new_y < game->map_height - 1 && game->map[new_y + 1][new_x] == '0') // Down
+	else if (direction == 1 && new_y < game->map_height - 1 &&( game->map[new_y + 1][new_x] == '0' || game->map[new_y + 1][new_x] == 'P')) // Down
 		new_y++;
-	else if (direction == 2 && new_x > 0 && game->map[new_y][new_x - 1] == '0') // Left
+	else if (direction == 2 && new_x > 0 && (game->map[new_y][new_x - 1] == '0' || game->map[new_y][new_x - 1] == 'P')) // Left
 		new_x--;
-	else if (direction == 3 && new_x < game->map_width - 1 && game->map[new_y][new_x + 1] == '0') // Right
+	else if (direction == 3 && new_x < game->map_width - 1 && (game->map[new_y][new_x + 1] == '0' ||game->map[new_y][new_x + 1] == 'P' )) // Right
 		new_x++;
-
 	if (new_x != enemy->x || new_y != enemy->y)
 	{
+		if (game->map[new_y][new_x] == 'P')
+        {
+            ft_printf("Game Over: You were caught by an enemy!\n");
+            free_resources(game);
+            exit(EXIT_FAILURE);
+        }
 		game->map[enemy->y][enemy->x] = '0';
 		enemy->x = new_x;
 		enemy->y = new_y;
@@ -220,7 +225,7 @@ int	move_enemies(t_game *game)
 {
 	static int	counter = 0; 
 
-	if (counter++ < 4000)
+	if (counter++ < 3000)
 		return (0);
 	counter = 0;
 
@@ -228,6 +233,7 @@ int	move_enemies(t_game *game)
 	{
 		move_enemy(game, &game->enemies[i]);
 	}
+	game->collectibles_img_index = (game->collectibles_img_index + 1) % game->collectibles_img_count;
 	display_map(game);
 	return (0);
 }
@@ -252,9 +258,7 @@ int	main(int ac, char *av[])
 	display_image(&game);
 	get_enemy_number(&game);
 	initialize_enemies(&game);
-
 	srand(time(NULL));
-
 	mlx_hook(game.mlx_win, 17, 0, close_window, &game);
 	mlx_hook(game.mlx_win, KeyPress, KeyRelease, handle_keypress, &game);
 	display_map(&game);

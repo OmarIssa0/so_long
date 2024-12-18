@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:45:15 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/18 18:42:06 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/18 23:30:35 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # define IMAGE_COLLECTIBLE_PATH "assets/image/new_collectible.xpm"
 # define IMAGE_EXIT_PATH "assets/image/new_exit.xpm"
 # define IMAGE_ENEMIES_PATH "assets/image/enemies.xpm"
+# define IMAGE_COLLECTIBLE_PATH_1 "assets/image/1.xpm"
+# define IMAGE_COLLECTIBLE_PATH_2 "assets/image/2.xpm"
+# define IMAGE_COLLECTIBLE_PATH_3 "assets/image/3.xpm"
 # define STANDARD_SIZE 50
 # define WIDTH_SIZE STANDARD_SIZE
 # define HEIGHT_SIZE STANDARD_SIZE
@@ -60,7 +63,9 @@ typedef struct s_game
 	void	*wall_img;
 	void	*exit_img;
 	void	*floor_img;
-	void	*collectible_img;
+	void	**collectible_img;
+	int		collectibles_img_count;
+	int		collectibles_img_index;
 	int		remaining_collectibles;
 	void	*enemy_img;
 	t_enemy	*enemies;

@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 21:01:58 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/18 17:31:43 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/18 23:05:25 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void player_control(t_game *game, int x, int y)
     new_y = game->player_y + y;
 	if (game->map[new_y][new_x] == 'A')
 	{
-		ft_printf("You lost the game!\n");
+		ft_printf("Game Over: You were caught by an enemy!\n");
 		free_resources(game);
 		exit(EXIT_SUCCESS);
 	}
@@ -138,6 +138,7 @@ void player_control(t_game *game, int x, int y)
         return;
     if (game->map[new_y][new_x] == 'E')
         player_control_too(game, new_x, new_y);
+
     if (game->map[new_y][new_x] == 'C')
     {
         game->map[new_y][new_x] = '0';
