@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:45:15 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 23:30:36 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/18 18:42:06 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define IMAGE_WALL_PATH "assets/image/ice2.xpm"
 # define IMAGE_COLLECTIBLE_PATH "assets/image/new_collectible.xpm"
 # define IMAGE_EXIT_PATH "assets/image/new_exit.xpm"
+# define IMAGE_ENEMIES_PATH "assets/image/enemies.xpm"
 # define STANDARD_SIZE 50
 # define WIDTH_SIZE STANDARD_SIZE
 # define HEIGHT_SIZE STANDARD_SIZE
@@ -94,7 +95,6 @@ void		check_map(t_game *game);
 void		check_file_name(char *map_file);
 void		free_resources(t_game *game);
 void		check_map_empty(t_game *game, char *tmp, int fd);
-void	move_enemies(t_game *game);
 /*
     error handler functions for map:
 */

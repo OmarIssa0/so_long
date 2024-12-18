@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:09:12 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 23:03:26 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/18 18:17:10 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	free_resources(t_game *game)
 		mlx_destroy_image(game->mlx, game->enemy_img);
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
+	if (game->enemies)
+		free(game->enemies);
 	if (game->mlx)
 		free(game->mlx);
 	if (game->map)

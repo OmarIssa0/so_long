@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:52:00 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/18 17:14:51 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/18 18:41:55 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	display_image(t_game *game)
 			IMAGE_COLLECTIBLE_PATH, &game->img_width, &game->img_height);
 	game->exit_img = mlx_xpm_file_to_image(game->mlx, IMAGE_EXIT_PATH,
 			&game->img_width, &game->img_height);
-    game->enemy_img = mlx_xpm_file_to_image(game->mlx, IMAGE_EXIT_PATH,
+    game->enemy_img = mlx_xpm_file_to_image(game->mlx, IMAGE_ENEMIES_PATH,
             &game->img_width, &game->img_height);       
 	if (!game->wall_img || !game->player_img || !game->floor_img
 		|| !game->collectible_img || !game->exit_img || !game->enemy_img)
@@ -93,6 +93,7 @@ void	display_map(t_game *game)
 			display_map_in_window(game, i, j);
 			j++;
 		}
+		display_steps(game);
 		i++;
 	}
 }
