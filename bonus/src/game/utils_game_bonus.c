@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:19:44 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/18 17:32:15 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/19 18:29:36 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,32 @@ void	can_play(t_game *game)
 		free_resources(game);
 		exit(EXIT_SUCCESS);
 	}
+}
+
+void	display_steps(t_game *game)
+{
+	char	*steps_str;
+	char	*message;
+	int		x;
+	int		y;
+
+	steps_str = ft_itoa(game->player_moves);
+	if (!steps_str)
+	{
+		ft_dprintf(2, "Error: memory allocation failed\n");
+		free_resources(game);
+		exit(EXIT_FAILURE);
+	}
+	message = ft_strjoin("Steps: ", steps_str);
+	if (!message)
+	{
+		ft_dprintf(2, "Error: memory allocation failed\n");
+		free_resources(game);
+		exit(EXIT_FAILURE);
+	}
+	x = 10;
+	y = 10;
+	mlx_string_put(game->mlx, game->mlx_win, x + 10, y + 10, 0x000000, message);
+	free(steps_str);
+	free(message);
 }

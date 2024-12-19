@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:09:12 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/18 23:33:30 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/19 18:28:13 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_map(t_game *game)
 	}
 	free(game->map);
 }
+
 void	free_collectibles(t_game *game)
 {
 	int	i;
@@ -62,4 +63,11 @@ void	free_resources(t_game *game)
 		free(game->mlx);
 	if (game->map)
 		free_map(game);
+}
+
+void	exit_and_free(char *message, t_game *game)
+{
+	ft_dprintf(2, "Error: %s\n", message);
+	free_resources(game);
+	exit(EXIT_FAILURE);
 }

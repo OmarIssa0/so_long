@@ -6,38 +6,23 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 21:01:58 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/18 23:05:25 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/19 13:07:58 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long_bonus.h"
 
-void display_steps(t_game *game)
-{
-    char *steps_str;
-    char *message;
-
-    steps_str = ft_itoa(game->player_moves);
-    message = ft_strjoin("Steps: ", steps_str);
-
-    int x = 10;
-    int y = 10;
-    mlx_string_put(game->mlx, game->mlx_win, x + 10, y + 10, 0x000000, message);
-    free(steps_str);
-    free(message);
-}
-
 /*
-    Escape key: 65307 && 113 -> exit the game
-    Q key: 113
-    W key: 119
-    S key: 115
-    A key: 97
-    D key: 100
-    UP key: 65362
-    DOWN key: 65364
-    LEFT key: 65361
-    RIGHT key: 65363
+	Escape key: 65307 && 113 -> exit the game
+	Q key: 113
+	W key: 119
+	S key: 115
+	A key: 97
+	D key: 100
+	UP key: 65362
+	DOWN key: 65364
+	LEFT key: 65361
+	RIGHT key: 65363
 */
 int	handle_keypress(int keycode, t_game *game)
 {
@@ -58,7 +43,7 @@ int	handle_keypress(int keycode, t_game *game)
 }
 
 /*
-    find the player position in the map
+	find the player position in the map
 */
 void	find_player_position(t_game *game)
 {
@@ -120,33 +105,31 @@ void	player_control_three(t_game *game, int new_x, int new_y)
 	game->player_moves++;
 }
 
-
-void player_control(t_game *game, int x, int y)
+void	player_control(t_game *game, int x, int y)
 {
-    int new_x;
-    int new_y;
+	int	new_x;
+	int	new_y;
 
-    new_x = game->player_x + x;
-    new_y = game->player_y + y;
+	new_x = game->player_x + x;
+	new_y = game->player_y + y;
 	if (game->map[new_y][new_x] == 'A')
 	{
 		ft_printf("Game Over: You were caught by an enemy!\n");
 		free_resources(game);
 		exit(EXIT_SUCCESS);
 	}
-    if (game->map[new_y][new_x] == '1')
-        return;
-    if (game->map[new_y][new_x] == 'E')
-        player_control_too(game, new_x, new_y);
-
-    if (game->map[new_y][new_x] == 'C')
-    {
-        game->map[new_y][new_x] = '0';
-        game->remaining_collectibles--;
-    }
-    if (game->map[new_y][new_x] == '0' || (game->map[new_y][new_x] == 'E'
+	if (game->map[new_y][new_x] == '1')
+		return ;
+	if (game->map[new_y][new_x] == 'E')
+		player_control_too(game, new_x, new_y);
+	if (game->map[new_y][new_x] == 'C')
+	{
+		game->map[new_y][new_x] = '0';
+		game->remaining_collectibles--;
+	}
+	if (game->map[new_y][new_x] == '0' || (game->map[new_y][new_x] == 'E'
 			&& game->remaining_collectibles == 0))
-        player_control_three(game, new_x, new_y);
-    display_map(game);
-    display_steps(game);
+		player_control_three(game, new_x, new_y);
+	display_map(game);
+	display_steps(game);
 }

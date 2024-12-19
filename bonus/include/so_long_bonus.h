@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:45:15 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/19 00:39:24 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/19 15:46:11 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <time.h>
 # include <unistd.h>
 
 /*
-    define paths for images:
+	define paths for images:
 */
 # define IMAGE_PLAYER_PATH "assets/image/new_player.xpm"
 # define IMAGE_FLOOR_PATH "assets/image/ice.xpm"
@@ -39,9 +40,10 @@
 # define HEIGHT_SIZE STANDARD_SIZE
 
 /*
-    game structure:
+	game structure:
 */
-typedef	struct s_enemy
+
+typedef struct s_enemy
 {
 	int		x;
 	int		y;
@@ -69,11 +71,11 @@ typedef struct s_game
 	int		remaining_collectibles;
 	void	*enemy_img;
 	t_enemy	*enemies;
-	int 	num_enemies;
+	int		num_enemies;
 }			t_game;
 
 /*
-    game keys:
+	game keys:
 */
 enum		e_game
 {
@@ -90,7 +92,7 @@ enum		e_game
 };
 
 /*
-    utils functions:
+	utils functions:
 */
 void		free_map(t_game *game);
 void		check_file_name(char *map_file);
@@ -100,8 +102,9 @@ void		check_map(t_game *game);
 void		check_file_name(char *map_file);
 void		free_resources(t_game *game);
 void		check_map_empty(t_game *game, char *tmp, int fd);
+void		exit_and_free(char *message, t_game *game);
 /*
-    error handler functions for map:
+	error handler functions for map:
 */
 void		check_width_and_height(t_game *game);
 void		check_map_walls(t_game *game);
@@ -114,7 +117,7 @@ void		check_map_too(t_game *game);
 void		exit_error(char *message, t_game *game, int fd, char *tmp);
 void		exit_error_and_close_fd(char *message, int fd);
 /*
-    game functions:
+	game functions:
 */
 void		init_game(t_game *game);
 void		display_image(t_game *game);
@@ -131,7 +134,7 @@ void		player_control_too(t_game *game, int new_x, int new_y);
 void		player_control_three(t_game *game, int new_x, int new_y);
 void		display_steps(t_game *game);
 /*
-    algorithm functions:
+	algorithm functions:
 */
 bool		can_player_finish_game(t_game *game);
 void		can_play(t_game *game);
