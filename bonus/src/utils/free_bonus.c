@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:09:12 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/19 18:28:13 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/20 23:25:19 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	free_resources(t_game *game)
 
 void	exit_and_free(char *message, t_game *game)
 {
-	ft_dprintf(2, "Error: %s\n", message);
+	ft_dprintf(2, "%s\n", message);
 	free_resources(game);
 	exit(EXIT_FAILURE);
 }

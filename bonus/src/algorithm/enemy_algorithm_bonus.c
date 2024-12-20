@@ -75,6 +75,13 @@ void	move_enemy_too(t_game *game, t_enemy *enemy, int new_x, int new_y)
 	}
 }
 
+/*
+    direction:
+    0: up
+    1: down
+    2: left
+    3: right
+*/
 void	move_enemy(t_game *game, t_enemy *enemy)
 {
 	int	direction;
@@ -106,7 +113,7 @@ int	move_enemies(t_game *game)
 	static int	counter = 0;
 	int			i;
 
-	if (counter++ < 5000)
+	if (counter++ < 3000)
 		return (0);
 	counter = 0;
 	i = 0;
