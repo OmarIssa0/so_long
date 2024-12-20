@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:52:00 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/19 16:09:15 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/20 18:01:08 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,65 +84,6 @@ void	display_map_in_window(t_game *game, int i, int j)
 		save_image_mlx(game, j, i, game->enemy_img);
 	else if (game->map[i][j] == '0')
 		save_image_mlx(game, j, i, game->floor_img);
-}
-
-void	display_map_too(t_game *game, int x, int y)
-{
-	if (game->remaining_collectibles == 0)
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit_img, x
-			* game->img_width, y * game->img_height);
-	else
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor_img, x
-			* game->img_width, y * game->img_height);
-	if (game->player_x == x && game->player_y == y)
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->player_img, x
-			* game->img_width, y * game->img_height);
-}
-
-void	display_map_three(t_game *game, int x, int y)
-{
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->player_img, x
-		* game->img_width, y * game->img_height);
-}
-
-void	display_map_four(t_game *game, int x, int y)
-{
-	if (game->map[y][x] == '1')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall_img, x
-			* game->img_width, y * game->img_height);
-	else if (game->map[y][x] == '0')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor_img, x
-			* game->img_width, y * game->img_height);
-	else if (game->map[y][x] == 'C')
-		mlx_put_image_to_window(game->mlx, game->mlx_win,
-			game->collectible_img[game->collectibles_img_index], x
-			* game->img_width, y * game->img_height);
-	else if (game->map[y][x] == 'E')
-		display_map_too(game, x, y);
-	else if (game->map[y][x] == 'P')
-		display_map_three(game, x, y);
-	else if (game->map[y][x] == 'A')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->enemy_img, x
-			* game->img_width, y * game->img_height);
-}
-
-void	display_map(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < game->map_height)
-	{
-		x = 0;
-		while (x < game->map_width)
-		{
-			display_map_four(game, x, y);
-			x++;
-		}
-		display_steps(game);
-		y++;
-	}
 }
 
 void	count_collectibles(t_game *game)

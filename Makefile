@@ -15,7 +15,7 @@ SRC = 			mandetory/src/main.c 							\
 				mandetory/src/game/utils_game.c 				\
 				mandetory/src/utils/error_handler_map_too.c 	\
 				mandetory/src/utils/error_handler_map.c 		\
-				mandetory/src/algorithm/algorithm.c 			\
+				mandetory/src/algorithm/algorithm.c 			
 
 SRC_BONUS = 	bonus/src/main_bonus.c 							\
 				bonus/src/utils/free_bonus.c 					\
@@ -27,6 +27,8 @@ SRC_BONUS = 	bonus/src/main_bonus.c 							\
 				bonus/src/utils/error_handler_map_too_bonus.c 	\
 				bonus/src/utils/error_handler_map_bonus.c 		\
 				bonus/src/algorithm/algorithm_bonus.c 			\
+				bonus/src/algorithm/enemy_algorithm_bonus.c 	\
+				bonus/src/game/display_map_bonus.c 				
 
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
@@ -56,7 +58,7 @@ $(NAME_BONUS): $(OBJ_BONUS) $(LIBFT)
 
 clean:
 	$(RM) $(OBJ) $(OBJ_BONUS)
-	$(MAKE) -C $(LIBFT_DIR) fclean -s
+	$(MAKE) -C $(LIBFT_DIR) clean -s
 
 fclean: clean
 	$(RM) $(NAME) $(NAME_BONUS)

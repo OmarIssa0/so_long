@@ -3,7 +3,6 @@ CFLAGS = -Wall -Wextra -Werror -I.
 AR = ar rcs
 RM = rm -f
 NAME = libft.a
-OBJDIR = obj
 
 SRC =	ft_atoi.c ft_bzero.c						\
 		ft_calloc.c ft_putendl_fd.c					\
@@ -50,23 +49,14 @@ SRC =	ft_atoi.c ft_bzero.c						\
 		dprintf/ft_dprintf_hex.c					\
 		dprintf/ft_dprintf_hex_uppercase.c			\
 		dprintf/ft_dprintf_char.c					\
-		dprintf/ft_utils.c							\
+		dprintf/ft_utils.c							
 
-OBJS = $(SRC:%.c=$(OBJDIR)/%.o)
+OBJS = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
-	mkdir -p $(OBJDIR)/printf
-	mkdir -p $(OBJDIR)/dprintf
-	mkdir -p $(OBJDIR)/get_next_line
-
-$(OBJDIR)/%.o: %.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
 $(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+	$(AR) $(NAME) $?
 
 clean:
 	$(RM) $(OBJS)

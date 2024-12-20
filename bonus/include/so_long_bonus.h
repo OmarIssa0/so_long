@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:45:15 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/19 15:46:11 by oissa            ###   ########.fr       */
+/*   Updated: 2024/12/20 18:00:04 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,10 @@ void		dfs(t_game *game, int rows, int cols, bool **visited);
 void		validate_malloc(bool **visited, int rows, int cols, t_game *game);
 void		free_visited(bool **visited, int rows);
 bool		can_finish_game(t_game *game, bool **visited, int rows, int cols);
+int			move_enemies(t_game *game);
+void		move_enemy(t_game *game, t_enemy *enemy);
+void		move_enemy_too(t_game *game, t_enemy *enemy, int new_x, int new_y);
+void		initialize_enemies(t_game *game);
+void		get_enemy_number(t_game *game);
 
 #endif
