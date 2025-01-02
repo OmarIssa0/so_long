@@ -113,7 +113,7 @@ int	move_enemies(t_game *game)
 	static int	counter = 0;
 	int			i;
 
-	if (counter++ < 3000)
+	if (counter++ < 4000)
 		return (0);
 	counter = 0;
 	i = 0;

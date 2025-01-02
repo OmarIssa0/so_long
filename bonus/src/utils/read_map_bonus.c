@@ -6,7 +6,7 @@
 /*   By: oissa <oissa@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:42:57 by oissa             #+#    #+#             */
-/*   Updated: 2024/12/17 22:46:10 by oissa            ###   ########.fr       */
+/*   Updated: 2025/01/02 18:16:26 by oissa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ void	save_for_map(char *map_file, t_game *game)
 	{
 		new_tmp = ft_strjoin(tmp, line);
 		if (!new_tmp)
+		{
+			free(tmp);
+			free(line);
 			exit_error_and_close_fd("Error: memory allocation failed", fd);
+		}
 		free(tmp);
 		free(line);
 		tmp = new_tmp;
